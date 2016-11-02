@@ -1,5 +1,7 @@
 # Rails Validation
 
+* [dry-validation](http://dry-rb.org/gems/dry-validation/)
+
 ```ruby
 class RecurringEvent < ApplicationRecord
   TIME_12H_FORMAT = /\A(1[0-2]|0?[1-9]):[0-5][0-9]\s?(am|pm)\z/i
