@@ -15,3 +15,5 @@
 * [Rules, Laws, and Gentle Guidelines ](https://www.youtube.com/watch?v=BDXQ4pcbEBA)
 
 > I'm beginning to use verbs for classes, instead of nouns. I've come to think that it improves the expressiveness of my code. Maybe something like`RejectConnection.if_private(url)`?
+
+One lesson to be gleaned is that you should name methods after **the concept they represent** rather than how they currently behave.
