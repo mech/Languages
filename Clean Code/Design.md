@@ -115,3 +115,9 @@ List<Employee> newEmployees = employees.hired(TODAY);
 
 assertThat(newEmployees).hasSize(6).contains("frodo", "sam");
 ```
+
+## Dependency Direction
+
+Depend on things that change less often than you do.
+
+Depending on an abstraction is always safer than depending on a concretion because by its very nature, the abstraction is more stable.
