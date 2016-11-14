@@ -84,10 +84,6 @@ It is cheaper to manage temporary duplication than to recover from incorrect abs
 
 Change ripple through the system.
 
-## Event Flow Confusing
-
-Object may be well-designed, but the event flow and message passing is confusing.
-
 ## Locality
 
 Dependencies locality.

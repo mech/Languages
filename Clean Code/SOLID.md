@@ -2,6 +2,8 @@
 
 ## SRP
 
+Always ask yourself: Should XXX be responsible for YYY? Or more generally, should this receiver be responsible for responding to this message?
+
 > "Should these 2 responsibilities be separated? That depends upon how the application is changing."
 > If, on the other hand, the application is not changing in ways that cause the two responsibilities to change at different times, then there is no need to separate them.
 
