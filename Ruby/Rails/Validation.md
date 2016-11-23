@@ -1,6 +1,7 @@
 # Rails Validation
 
 * [dry-validation](http://dry-rb.org/gems/dry-validation/)
+* [Always use the new "Sexy Validation" introduced in Rails 3](http://thelucid.com/2010/01/08/sexy-validation-in-edge-rails-rails-3/)
 
 ```ruby
 class RecurringEvent < ApplicationRecord

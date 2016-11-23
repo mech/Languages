@@ -61,3 +61,6 @@ An object contract (conditions-of-use) describes the conditions under which it g
 
 ### Group collaborators into subsystems
 
+### Relinquish as many control as possible
+
+Trust other objects, let them do their jobs, relinquish as many responsibilities as possible.

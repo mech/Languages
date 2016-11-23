@@ -2,9 +2,13 @@
 
 Good code not only works, but is also simple, understandable, expressive and changeable.
 
+Good design preserves maximum flexibility at minimum cost by putting off decisions at every opportunity, deferring commitments until more specific information arrive.
+
 ## Lack of Design
 
 Failure of OOD might look like failures of coding technique but they are actually failures of perspective.
+
+> Gain design understanding
 
 ## Cost of Change
 
@@ -80,6 +84,10 @@ Duplication of logic suggests that there are concepts hidden in the code that ar
 
 It is cheaper to manage temporary duplication than to recover from incorrect abstractions. The resulting code might just be "good enough". The challenge comes when a change request arrives. Code that's good enough when nothing ever changes may well be code that's not good enough when things do.
 
+> Do you have enough information to identify the correct abstraction? It may be best to duplicate the code and wait for better information in the meantime.
+
+If you cannot correctly identify the abstraction there may not be one, and if no common abstraction exists then inheritance is not the solution to your design problem.
+
 ## Relationship of Different Pieces
 
 Change ripple through the system.
@@ -87,6 +95,12 @@ Change ripple through the system.
 ## Locality
 
 Dependencies locality.
+
+## Inheritance
+
+> Inheritance is specialization
+
+Use it for *is-a* relationship. Always have a shallow, narrow hierarchy rather than a deep, wide hierarchy.
 
 ## Compositionality
 
@@ -117,3 +131,32 @@ assertThat(newEmployees).hasSize(6).contains("frodo", "sam");
 Depend on things that change less often than you do.
 
 Depending on an abstraction is always safer than depending on a concretion because by its very nature, the abstraction is more stable.
+
+```ruby
+class Sales < Persistence
+  def self.total(within:)
+    where(date: within).sum('cost')
+  end
+end
+
+class Foo
+  def sales_total(params, model=Sale)
+    range  = DateRange.new(starting: params[:starting], ending: params[:ending]).range
+    model.total(within: range)
+  end
+end
+
+class TotalizableDouble
+  def self.total(within:)
+    47
+  end
+end
+
+class FooTest < MiniTest::Test
+  def test_sales_total
+    params = {starting: '2016-04-01', ending: '2016-04-07'}
+    model = TotalizableDouble
+    assert_equal 47, Foo.new.sales_total(params, model)
+  end
+end
+```
