@@ -14,6 +14,20 @@ If a test require painful setup, the code expects too much context.
 
 If testing one object drags a bunch of others into the mix, the code has too many dependencies.
 
+Testing, done well, speeds development and lowers costs. It's also true that flawed tests slow you down and cost you money.
+
+## Fear of Tests
+
+The way to deal with errors is by building curiosity, not fear. "Why is this thing breaking?" rather than "How can I make this problem go away!".
+
+## Green Bar Patterns
+
+1. Fake it ('til you make it)
+2. Obvious implementation
+3. Triangulate
+
+Developing the habit of writing just enough code to pass the tests forces you to write better tests.
+
 ## Incoming and Outgoing Messages
 
 The incoming messages make up the public interface of the receiving object.
@@ -35,9 +49,29 @@ When you test outgoing command messages only to prove they get sent, your loosel
 
 ## Generic Code and Transformations
 
+* [The Transformation Priority Premise](https://8thlight.com/blog/uncle-bob/2013/05/27/TheTransformationPriorityPremise.html)
+
 > As the tests get more specific, the code gets more generic.
 
 Your test code cannot be generic because it is not true production  code. It must be very specific and full of constraints.
+
+> The difference between the solution that adds a conditional and the solution that interpolates a variable into a string is that in the first, **as the tests get more specific, the code stays equally specific**. Every verse has its own personal test and its own individual code; there will never be a time when the code can do anything which is not explicitly tested.
+
+Code becomes more generic by becoming more abstract.
+
+> If you're in the middle of writing test, better information is as close as the next test. Squeezing all duplication out at the end of every test is not necessary. It's perfectly reasonable to tolerate a bit of duplication across several tests, hoping that coding up a number of slightly duplicative examples will reveal the correct abstraction. It's better to tolerate duplication than to anticipate the wrong abstraction.
+
+Writing Shameless Green means optimizing for understandability, not changeability, and patiently tolerating duplication if doing so will help reveal the underlying abstraction. **Subsequent tests, or future requirements**, will provide the exact information necessary to improve the code.
+
+The Shameless Green solution is optimized to be straightforward and intentional-revealing, and doesn't much concern itself with changeability or future maintenance. The goal is to use green to maximize your understanding of the problem and to unearth all available information before committing to abstractions.
+
+> Quick green excuses all sins.
+
+**Test-to-code coupling**
+
+A great deal of pain originates with tests that are tied too closely to code. Every improvement to the code breaks the tests. Therefore, the first step is to understand how to write tests that confirm what your code does without any knowledge of how your code does it.
+
+> Tests are not the place for abstractions - they are the place for concretions. Abstractions belong in code.
 
 ## Prevent Code Rot
 
@@ -69,6 +103,8 @@ This may be obvious, but still, never ever stub the object under test. More ofte
 
 ## Mocks
 
+* [Thoughts on Mocking](http://practicingruby.com/articles/thoughts-on-mocking-1)
+
 Mocks are tests of behavior, as opposed to tests of state. Instead of making assertions about what a message returns, mocks define an expectation that a message will get sent.
 
 Easy to do if you have dependency injection. In scenarios where it's not possible to change your code to support injection, you can also resort to a stub to inject dependencies indirectly.
@@ -93,6 +129,21 @@ The more collaborators you mock, the greater the risk of false positives.
 
 ## Shared Helpers/Examples
 
+Use Extract Method to make mocks easier to write:
+
+```ruby
+# test/test_helper.rb
+def mock_filemaker_with_response(response)
+  fm_server = Minitest::Mock.new
+  FMS::ConnectionPool.stub(:connect) do
+    fm_server.expect(:get, response)
+    yield
+  end
+  fm_server.verify
+end
+```
+
+Use Extract Method to write custom assertions.
 
 
 ## Videos

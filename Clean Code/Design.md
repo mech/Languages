@@ -9,8 +9,14 @@ Good design preserves maximum flexibility at minimum cost by putting off decisio
 Failure of OOD might look like failures of coding technique but they are actually failures of perspective.
 
 > Gain design understanding
+> 
+> Exposing core concept. Unearth concepts that are currently hidden in the code.
+> 
+> Does extremely well on the domain questions
 
 ## Cost of Change
+
+> Code that needs to be changed must be changeable. The code arrangement that was acceptable for Shameless Green is not necessarily best for "enabling change".
 
 Something always change. It always does. The customers didn't know what they wanted, they didn't say what they meant. You didn't understand their needs, you've learned how to do something better, etc.
 
@@ -38,7 +44,24 @@ You customers can't define the software they want before seeing it, so it's best
 
 > If lack of a feature will force you out of business today it doesn't matter how much it will cost to deal with the code tomorrow.
 
+That is the beauty of this technique. You don't have to know how to solve the whole problem in advance. The plan is to nibble away, one code smell at a time, in faith that the path to openness will be revealed.
+
+## Intention and Implementation
+
+> The distinction between intention and implementation allows you to understand a computation first in essence and later, if necessary, in detail. - Kent Beck
+
+```ruby
+# song is the intention and verses(99, 0) is the implementation
+def song
+  verses(99, 0)
+end
+```
+
 ## Abstraction
+
+> Make visible the invisible and thus reveal core concepts.
+
+* [The Wrong Abstraction](http://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction)
 
 > Your code is less concrete but more abstract - you've made it initially harder to understand in hopes that it will ultimately be easier to maintain.
 
@@ -87,6 +110,10 @@ It is cheaper to manage temporary duplication than to recover from incorrect abs
 > Do you have enough information to identify the correct abstraction? It may be best to duplicate the code and wait for better information in the meantime.
 
 If you cannot correctly identify the abstraction there may not be one, and if no common abstraction exists then inheritance is not the solution to your design problem.
+
+When abstractions are correct, code is easy to understand. But if you DRY with too much vigor, it can middy the waters. This suggests an insufficient understanding of the problem or working with **incomplete information**.
+
+> Abstraction is the Core Concept. It is the named information thingy that you need.
 
 ## Relationship of Different Pieces
 
@@ -160,3 +187,18 @@ class FooTest < MiniTest::Test
   end
 end
 ```
+
+## Open/Closed Principle
+
+The decision about whether to refactor in the first place should be determined by whether your code is already "open" to the new requirement.
+
+Code is open to a new requirement when you can meet that new requirement without changing existing code.
+
+If you're unclear how to make code open, the way forward is to start removing code smells.
+
+## Liskov Substitution Principle
+
+```ruby
+number.to_s.capitalize
+```
+

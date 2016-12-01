@@ -7,6 +7,7 @@
 * [Service objects in Rails will help you design clean and maintainable code. Here's how.](https://www.netguru.co/blog/service-objects-in-rails-will-help)
 * [The World Needs Another Post About Dependency Injection in Ruby](http://solnic.eu/2013/12/17/the-world-needs-another-post-about-dependency-injection-in-ruby.html)
 * [Testing Network Services in Ruby Is Easier Than You Think](http://www.justinweiss.com/articles/testing-network-services-in-ruby//)
+* [Composition by James Dabbs](https://www.youtube.com/watch?v=zwo7ZTHS8Wg)
 
 ---
 
@@ -19,6 +20,8 @@
 7. Decorator
 
 ## Service Object
+
+> Service layers are all about verbs.
 
 * Define application boundary that establishes a set of available operations.
 * Encapsulate cross-cutting operations. Involves several models.

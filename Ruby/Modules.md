@@ -107,7 +107,10 @@ In Rails 5, there are also [thread-level module and class level variables](http:
 
 ## Singleton Class, Metaclass, Eigenclass
 
-Not to be confused with Singleton Pattern.
+* [My Meta Moments](https://www.youtube.com/watch?v=0OAgZBNIixU)
+* [Writing DSL in Ruby](https://robots.thoughtbot.com/writing-a-domain-specific-language-in-ruby)
+
+Not to be confused with Singleton Pattern. The Singleton Class is just the idea that a Class is actually an Object.
 
 ## Delegation
 

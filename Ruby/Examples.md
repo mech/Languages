@@ -43,3 +43,56 @@ rand(1..6)
 
 email, username = options.values_at(:email, :nickname)
 ```
+
+**Builder Example**
+
+```ruby
+card(size: 'large') do |c|
+  c.header 'Title here'
+  c.image 'https://cdn/1.png'
+  c.badges { fav: fav_count }
+end
+
+def card(options = {}, &block)
+  CardBuilder.new(context, options).render(&block)
+end
+
+class CardBuilder
+  def initialize(options = {})
+    @size = options.fetch(:size, 'normal')
+  end
+  
+  def render(&block)
+  end
+  
+  def header(text)
+  end
+end
+```
+
+## Object Composition
+
+```ruby
+class Topologist
+  attr_reader :sense_of_humor, :deliver
+  
+  def initialize(sense_of_humor:, deliver:)
+    @sense_of_humor, @delivery = sense_of_humor, delivery
+    freeze
+  end
+  
+  def call(jokes)
+    delivery.call jokes.select { |joke| sense_of_humor.call joke }.sample
+  end
+end
+
+topologist = Topologist.new(
+  sense_of_humor: ->(joke) { true },
+  deliver:        ->(joke) { joke }
+)
+
+loud_topologist = Topologist.new(
+  sense_of_humor: ->(joke) { true },
+  deliver:        ->(joke) { joke.upcase + '!!!' }
+)
+```
