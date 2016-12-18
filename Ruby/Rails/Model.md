@@ -8,6 +8,9 @@
 * [The World Needs Another Post About Dependency Injection in Ruby](http://solnic.eu/2013/12/17/the-world-needs-another-post-about-dependency-injection-in-ruby.html)
 * [Testing Network Services in Ruby Is Easier Than You Think](http://www.justinweiss.com/articles/testing-network-services-in-ruby//)
 * [Composition by James Dabbs](https://www.youtube.com/watch?v=zwo7ZTHS8Wg)
+* [Getting Rails on Track - Part 3: Controllers](https://8thlight.com/blog/christoph-gockel/2016/11/02/getting-rails-on-track-part-3-controllers.html)
+* [Build Sleek Rails Components With Plain Old Ruby Objects](https://www.toptal.com/ruby-on-rails/decoupling-rails-components)
+* [Improving Large Rails Apps with Service Objects](https://aaronlasseigne.com/2016/04/27/improving-large-rails-apps-with-service-objects/)
 
 ---
 
@@ -23,6 +26,8 @@
 
 > Service layers are all about verbs.
 
+* Specific to a use-case.
+* Can also be seen as a Command Object, to use a design pattern name for it.
 * Define application boundary that establishes a set of available operations.
 * Encapsulate cross-cutting operations. Involves several models.
 * Encapsulate a single process of the business logic. Describe one business rule only.
@@ -50,7 +55,9 @@ rescue ServiceError => e
 end
 ```
 
-Most Services use the `call()` so you can use a closure as well.
+Most Services use the `call()` so you can use a closure as well. Some services also use `execute()`.
+
+Some services use verbs instead of nouns: `Movies::Create` vs `Movies::Creator`.
 
 ## Form Object
 
@@ -64,7 +71,10 @@ You can move validation to Form Object, but your model still need it just in cas
 
 > So this isn't a SRP violation, they are two different responsibilities and relate to different chapters in the lifecycle of information.
 
-## Value Object
+## Value Object (Immutable)
+
+* [tcrayford/Values](https://github.com/tcrayford/Values)
+* [To Clojure and back](https://www.youtube.com/watch?v=doZ0XAc9Wtc)
 
 Simple, small object that represents certain value-ness instead of an identity. Examples are money values in various currencies, temperatures, etc.
 

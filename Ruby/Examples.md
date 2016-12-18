@@ -1,6 +1,8 @@
 # Ruby Examples to Learn From
 
 ```ruby
+Date._parse(string, false).values_at(:year, :mon, :mday)
+
 puts 'foo', 'bar'
 
 # class TooManyTimesheetError < TreyError; end
@@ -66,6 +68,18 @@ class CardBuilder
   end
   
   def header(text)
+  end
+end
+```
+
+**Polyfill****
+
+```ruby
+class Hash
+  unless Hash.instance_methods(false).include?(:compact)
+    def compact
+      select { |_, value| !value.nil? }
+    end
   end
 end
 ```
